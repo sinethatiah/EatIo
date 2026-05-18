@@ -1,4 +1,4 @@
-import useProfile from "../../hooks/useProfile"
+import useProfile from "../../Hooks/UseProfile"
 import { conditions } from "../../data/conditions"
 import { goals } from "../../data/goals"
 

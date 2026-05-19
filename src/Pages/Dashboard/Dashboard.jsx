@@ -1,33 +1,31 @@
-
-import { auth } from '@/firebase'
+import { auth } from '../firebase'
 import { signOut } from 'firebase/auth'
-import React from 'react'
-import {  Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
-const Dashboard =()=> {
-    const navigate = useNavigate()
-    const handleLogout = async () =>{
-      await signOut(auth)
-      navigate('/login')
-    }
-    
+const Dashboard = () => {
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await signOut(auth)
+    navigate('/login')
+  }
+
   return (
-    <>
-      <div className="flex min-h-screen">
+    <div className="flex min-h-screen">
 
       {/* Sidebar */}
       <div className="flex flex-col justify-between w-48 border-r border-gray-100 px-6 py-8">
         <div className="flex flex-col gap-1">
-          <h1 className="text-sm font-semibold mb-8">eat.io</h1>
-          <Link to="home" className="text-sm text-gray-400 hover:text-black py-1">Home</Link>
-          <Link to="nutritionGuide" className="text-sm text-gray-400 hover:text-black py-1">Guide</Link>
-          <Link to="profile" className="text-sm text-gray-400 hover:text-black py-1">Profile</Link>
-          <Link to="saved" className="text-sm text-gray-400 hover:text-black py-1">Saved</Link>
+          <h1 className="text-xl font-semibold mb-8">eat.io</h1>
+          <Link to="home" className="text-base text-gray-400 hover:text-black py-1">Home</Link>
+          <Link to="nutritionGuide" className="text-base text-gray-400 hover:text-black py-1">Guide</Link>
+          <Link to="profile" className="text-base text-gray-400 hover:text-black py-1">Profile</Link>
+          <Link to="saved" className="text-base text-gray-400 hover:text-black py-1">Saved</Link>
         </div>
 
         <button
           onClick={handleLogout}
-          className="text-sm text-gray-400 hover:text-black text-left"
+          className="text-base text-gray-400 hover:text-black text-left"
         >
           Log out
         </button>
@@ -39,7 +37,6 @@ const Dashboard =()=> {
       </div>
 
     </div>
-    </>
   )
 }
 

@@ -67,13 +67,13 @@ const Onboarding = () => {
   return (
     <div className="max-w-sm mx-auto mt-20 px-4">
 
-      <h1 className="text-xl font-semibold mb-1">eat.io</h1>
-      <p className="text-gray-400 text-xs mb-10">Step {step} of {intent === "" || intent === "explore" ? 1 : 3}</p>
+      <h1 className="text-2xl font-semibold mb-1">eat.io</h1>
+      <p className="text-gray-400 text-base mb-10">Step {step} of {intent === "" || intent === "explore" ? 1 : 3}</p>
 
       {step === 1 && (
         <div>
-          <h2 className="text-sm font-medium mb-1">What brings you here?</h2>
-          <p className="text-gray-400 text-xs mb-4">We'll use this to personalise your experience.</p>
+          <h2 className="text-lg font-medium mb-1">What brings you here?</h2>
+          <p className="text-gray-400 text-base mb-4">We'll use this to personalise your experience.</p>
           <div className="flex flex-col gap-2">
             {intents.map((intent) => (
               <button
@@ -81,8 +81,8 @@ const Onboarding = () => {
                 onClick={() => handleIntent(intent.id)}
                 className="border border-gray-200 rounded-lg p-3 text-left hover:border-gray-400"
               >
-                <p className="text-sm">{intent.label}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{intent.description}</p>
+                <p className="text-base">{intent.label}</p>
+                <p className="text-sm text-gray-400 mt-0.5">{intent.description}</p>
               </button>
             ))}
           </div>
@@ -91,53 +91,53 @@ const Onboarding = () => {
 
       {step === 2 && intent === "condition" && (
         <div>
-          <h2 className="text-sm font-medium mb-1">Select your condition</h2>
-          <p className="text-gray-400 text-xs mb-4">We'll filter recipes and guidance to match.</p>
+          <h2 className="text-lg font-medium mb-1">Select your condition</h2>
+          <p className="text-gray-400 text-base mb-4">We'll filter recipes and guidance to match.</p>
           <div className="flex flex-col gap-2">
             {conditions.map((condition) => (
               <button
                 key={condition.id}
                 onClick={() => handleConditionOrGoal(condition)}
-                className="border border-gray-200 rounded-lg p-3 text-left text-sm hover:border-gray-400"
+                className="border border-gray-200 rounded-lg p-3 text-left text-base hover:border-gray-400"
               >
                 {condition.label}
               </button>
             ))}
           </div>
-          <button onClick={() => setStep(1)} className="text-xs text-gray-400 mt-4 underline">← Back</button>
+          <button onClick={() => setStep(1)} className="text-sm text-gray-400 mt-4 underline">← Back</button>
         </div>
       )}
 
       {step === 2 && intent === "goal" && (
         <div>
-          <h2 className="text-sm font-medium mb-1">What's your goal?</h2>
-          <p className="text-gray-400 text-xs mb-4">We'll recommend recipes that support where you're headed.</p>
+          <h2 className="text-lg font-medium mb-1">What's your goal?</h2>
+          <p className="text-gray-400 text-base mb-4">We'll recommend recipes that support where you're headed.</p>
           <div className="flex flex-col gap-2">
             {goals.map((goal) => (
               <button
                 key={goal.id}
                 onClick={() => handleConditionOrGoal(goal)}
-                className="border border-gray-200 rounded-lg p-3 text-left text-sm hover:border-gray-400"
+                className="border border-gray-200 rounded-lg p-3 text-left text-base hover:border-gray-400"
               >
                 {goal.label}
               </button>
             ))}
           </div>
-          <button onClick={() => setStep(1)} className="text-xs text-gray-400 mt-4 underline">← Back</button>
+          <button onClick={() => setStep(1)} className="text-sm text-gray-400 mt-4 underline">← Back</button>
         </div>
       )}
 
       {step === 3 && (
         <div>
-          <h2 className="text-sm font-medium mb-1">Foods to avoid</h2>
-          <p className="text-gray-400 text-xs mb-4">Pre-filled based on your profile. Remove or add anything.</p>
+          <h2 className="text-lg font-medium mb-1">Foods to avoid</h2>
+          <p className="text-gray-400 text-base mb-4">Pre-filled based on your profile. Remove or add anything.</p>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {restrictions.map((item) => (
               <span
                 key={item}
                 onClick={() => toggle(item)}
-                className="cursor-pointer bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
+                className="cursor-pointer bg-gray-100 text-gray-600 text-base px-3 py-1 rounded-full"
               >
                 {item} ✕
               </span>
@@ -151,20 +151,20 @@ const Onboarding = () => {
               onChange={(e) => setCustom(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addCustom()}
               placeholder="Add something..."
-              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-xs outline-none"
+              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-base outline-none"
             />
-            <button onClick={addCustom} className="border border-gray-200 rounded-lg px-3 py-2 text-xs">
+            <button onClick={addCustom} className="border border-gray-200 rounded-lg px-3 py-2 text-base">
               Add
             </button>
           </div>
 
           <button
             onClick={handleComplete}
-            className="w-full bg-black text-white py-2 rounded-lg text-xs"
+            className="w-full bg-black text-white py-2 rounded-lg text-base"
           >
             Continue
           </button>
-          <button onClick={() => setStep(2)} className="text-xs text-gray-400 mt-3 underline block">← Back</button>
+          <button onClick={() => setStep(2)} className="text-sm text-gray-400 mt-3 underline block">← Back</button>
         </div>
       )}
 

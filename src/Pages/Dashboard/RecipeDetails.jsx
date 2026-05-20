@@ -22,7 +22,6 @@ const RecipeDetail = () => {
       const meal = data.meals[0]
       setRecipe(meal)
 
-      // extract ingredients
       const extracted = []
       for (let i = 1; i <= 20; i++) {
         const ingredient = meal[`strIngredient${i}`]
@@ -59,21 +58,16 @@ const RecipeDetail = () => {
     }
 
     if (saved) {
-      await updateDoc(ref, {
-        "profile.savedRecipes": arrayRemove(recipeObj)
-      })
+      await updateDoc(ref, { "profile.savedRecipes": arrayRemove(recipeObj) })
       setSaved(false)
     } else {
-      await updateDoc(ref, {
-        "profile.savedRecipes": arrayUnion(recipeObj)
-      })
+      await updateDoc(ref, { "profile.savedRecipes": arrayUnion(recipeObj) })
       setSaved(true)
     }
   }
 
   if (loading) return <p className="text-base text-gray-400">Loading...</p>
 
-  // split instructions into steps by newline
   const steps = recipe.strInstructions
     ?.split("\n")
     .filter((s) => s.trim().length > 0) || []
@@ -85,16 +79,19 @@ const RecipeDetail = () => {
         <button
           onClick={() => navigate(-1)}
           className="text-sm text-gray-400 underline"
+          onMouseOver={e => e.target.style.color = "#9e6b47"}
+          onMouseOut={e => e.target.style.color = ""}
         >
           ← Back
         </button>
         <button
           onClick={handleSave}
-          className={`text-sm px-4 py-2 rounded-lg border transition-all ${
+          className="text-sm px-4 py-2 rounded-lg border transition-all"
+          style={
             saved
-              ? "bg-[#4a7c59] text-white border-[#4a7c59]"
-              : "text-gray-400 border-gray-200 hover:border-[#4a7c59] hover:text-[#4a7c59]"
-          }`}
+              ? { backgroundColor: "#9e6b47", color: "white", borderColor: "#9e6b47" }
+              : { color: "#9e6b47", borderColor: "#9e6b47", backgroundColor: "transparent" }
+          }
         >
           {saved ? "Saved" : "Save recipe"}
         </button>
@@ -115,7 +112,7 @@ const RecipeDetail = () => {
       <div className="flex flex-col gap-2 mb-8">
         {ingredients.map((ing, index) => (
           <div key={index} className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#4a7c59] shrink-0" />
+            <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#607a52" }} />
             <p className="text-base text-gray-600">{ing}</p>
           </div>
         ))}
@@ -125,7 +122,7 @@ const RecipeDetail = () => {
       <div className="flex flex-col gap-4">
         {steps.map((step, index) => (
           <div key={index} className="flex gap-3">
-            <span className="text-sm text-gray-400 shrink-0 mt-0.5">{index + 1}.</span>
+            <span className="text-sm shrink-0 mt-0.5" style={{ color: "#9e6b47" }}>{index + 1}.</span>
             <p className="text-base text-gray-600">{step}</p>
           </div>
         ))}

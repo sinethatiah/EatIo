@@ -45,7 +45,11 @@ const Profile = () => {
 
       <h2 className="text-lg font-medium mb-1">Your profile</h2>
       <p className="text-base text-gray-400 mb-8">
-        {profile.intent === "condition" ? `Condition: ${profile.conditions[0]}` : profile.intent === "goal" ? `Goal: ${profile.goals[0]}` : "Exploring"}
+        {profile.intent === "condition"
+          ? `Condition: ${profile.conditions[0]}`
+          : profile.intent === "goal"
+          ? `Goal: ${profile.goals[0]}`
+          : "Exploring"}
       </p>
 
       <h3 className="text-base font-medium mb-3">Foods to avoid</h3>
@@ -56,7 +60,8 @@ const Profile = () => {
           <span
             key={item}
             onClick={() => toggle(item)}
-            className="cursor-pointer bg-gray-100 text-gray-600 text-base px-3 py-1 rounded-full"
+            className="cursor-pointer text-base px-3 py-1 rounded-full"
+            style={{ backgroundColor: "#f2ebe0", color: "#9e6b47" }}
           >
             {item} ✕
           </span>
@@ -71,15 +76,21 @@ const Profile = () => {
           onKeyDown={(e) => e.key === "Enter" && addCustom()}
           placeholder="Add something..."
           className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-base outline-none"
+          style={{ "--tw-ring-color": "#9e6b47" }}
         />
-        <button onClick={addCustom} className="border border-gray-200 rounded-lg px-3 py-2 text-base">
+        <button
+          onClick={addCustom}
+          className="border rounded-lg px-3 py-2 text-base"
+          style={{ borderColor: "#9e6b47", color: "#9e6b47" }}
+        >
           Add
         </button>
       </div>
 
       <button
         onClick={handleSave}
-        className="w-full bg-black text-white py-2 rounded-lg text-base"
+        className="w-full py-2 rounded-lg text-base text-white"
+        style={{ backgroundColor: saved ? "#607a52" : "#9e6b47" }}
       >
         {saved ? "Saved!" : "Save changes"}
       </button>

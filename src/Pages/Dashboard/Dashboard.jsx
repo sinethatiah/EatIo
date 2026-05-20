@@ -19,7 +19,17 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className="flex flex-col justify-between w-48 h-full border-r border-gray-100 px-6 py-8 shrink-0" style={{ backgroundColor: "#f2ebe0" }}>
         <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-semibold mb-8" style={{ color: "#9e6b47" }}>eat.io</h1>
+         <div className="mb-8 flex items-center gap-2">
+  <div className="mb-8">
+  <img 
+  src="/src/assets/myLogo.png" 
+  alt="eat.io" 
+  className="w-16 h-16 rounded-xl mb-8"
+  style={{ mixBlendMode: "multiply", backgroundColor: "#5c3318" }}
+/>
+</div>
+  
+</div>
           <NavLink
             to="home"
             className={({ isActive }) => `text-base py-1 ${isActive ? "font-medium" : "text-gray-400"}`}

@@ -9,17 +9,29 @@ const RecipeDetail = () => {
   const navigate = useNavigate()
   const { currentUser } = useAuth()
   const [recipe, setRecipe] = useState(null)
+  const [ingredients, setIngredients] = useState([])
   const [loading, setLoading] = useState(true)
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const key = import.meta.env.VITE_SPOONACULAR_KEY
       const res = await fetch(
-        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${key}`
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
       )
       const data = await res.json()
-      setRecipe(data)
+      const meal = data.meals[0]
+      setRecipe(meal)
+
+      // extract ingredients
+      const extracted = []
+      for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`]
+        const measure = meal[`strMeasure${i}`]
+        if (ingredient && ingredient.trim()) {
+          extracted.push(`${measure?.trim()} ${ingredient.trim()}`)
+        }
+      }
+      setIngredients(extracted)
       setLoading(false)
     }
 
@@ -28,7 +40,7 @@ const RecipeDetail = () => {
       const snap = await getDoc(ref)
       if (snap.exists()) {
         const savedRecipes = snap.data().profile.savedRecipes || []
-        setSaved(savedRecipes.includes(Number(id)))
+        setSaved(savedRecipes.some((r) => r.id === id))
       }
     }
 
@@ -38,20 +50,33 @@ const RecipeDetail = () => {
 
   const handleSave = async () => {
     const ref = doc(db, "users", currentUser.uid)
+    const recipeObj = {
+      id: recipe.idMeal,
+      title: recipe.strMeal,
+      image: recipe.strMealThumb,
+      category: recipe.strCategory?.toLowerCase() || "",
+      area: recipe.strArea?.toLowerCase() || "",
+    }
+
     if (saved) {
       await updateDoc(ref, {
-        "profile.savedRecipes": arrayRemove(Number(id))
+        "profile.savedRecipes": arrayRemove(recipeObj)
       })
       setSaved(false)
     } else {
       await updateDoc(ref, {
-        "profile.savedRecipes": arrayUnion(Number(id))
+        "profile.savedRecipes": arrayUnion(recipeObj)
       })
       setSaved(true)
     }
   }
 
   if (loading) return <p className="text-base text-gray-400">Loading...</p>
+
+  // split instructions into steps by newline
+  const steps = recipe.strInstructions
+    ?.split("\n")
+    .filter((s) => s.trim().length > 0) || []
 
   return (
     <div className="max-w-2xl">
@@ -67,8 +92,8 @@ const RecipeDetail = () => {
           onClick={handleSave}
           className={`text-sm px-4 py-2 rounded-lg border transition-all ${
             saved
-              ? "bg-black text-white border-black"
-              : "bg-white text-gray-400 border-gray-200 hover:border-gray-400"
+              ? "bg-[#4a7c59] text-white border-[#4a7c59]"
+              : "text-gray-400 border-gray-200 hover:border-[#4a7c59] hover:text-[#4a7c59]"
           }`}
         >
           {saved ? "Saved" : "Save recipe"}
@@ -76,32 +101,32 @@ const RecipeDetail = () => {
       </div>
 
       <img
-        src={recipe.image}
-        alt={recipe.title}
+        src={recipe.strMealThumb}
+        alt={recipe.strMeal}
         className="w-full h-56 object-cover rounded-lg mb-6"
       />
 
-      <h2 className="text-xl font-medium mb-1">{recipe.title}</h2>
+      <h2 className="text-xl font-medium mb-1">{recipe.strMeal}</h2>
       <p className="text-base text-gray-400 mb-6">
-        {recipe.readyInMinutes} min · {recipe.servings} servings
+        {recipe.strCategory} · {recipe.strArea}
       </p>
 
       <h3 className="text-base font-medium mb-3">Ingredients</h3>
       <div className="flex flex-col gap-2 mb-8">
-        {recipe.extendedIngredients.map((ing) => (
-          <div key={ing.id} className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
-            <p className="text-base text-gray-600">{ing.original}</p>
+        {ingredients.map((ing, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#4a7c59] shrink-0" />
+            <p className="text-base text-gray-600">{ing}</p>
           </div>
         ))}
       </div>
 
       <h3 className="text-base font-medium mb-3">Instructions</h3>
       <div className="flex flex-col gap-4">
-        {recipe.analyzedInstructions[0]?.steps.map((step) => (
-          <div key={step.number} className="flex gap-3">
-            <span className="text-sm text-gray-400 shrink-0 mt-0.5">{step.number}.</span>
-            <p className="text-base text-gray-600">{step.step}</p>
+        {steps.map((step, index) => (
+          <div key={index} className="flex gap-3">
+            <span className="text-sm text-gray-400 shrink-0 mt-0.5">{index + 1}.</span>
+            <p className="text-base text-gray-600">{step}</p>
           </div>
         ))}
       </div>

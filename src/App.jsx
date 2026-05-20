@@ -9,6 +9,7 @@ import Home from "./Pages/Dashboard/Home";
 import NutritionGuide from "./Pages/Dashboard/NutritionGuide";
 import Profile from "./Pages/Dashboard/Profile";
 import Saved from "./Pages/Dashboard/Saved";
+import RecipeDetails from "./Pages/Dashboard/RecipeDetails"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="nutritionGuide" element={<NutritionGuide />} />
               <Route path="profile" element={<Profile />} />
               <Route path="saved" element={<Saved />} />
+              <Route path="recipe/:id" element={<RecipeDetails/>} />
             </Route>
             <Route
               path="/onboarding"

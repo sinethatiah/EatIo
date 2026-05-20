@@ -10,6 +10,7 @@ import NutritionGuide from "./Pages/Dashboard/NutritionGuide";
 import Profile from "./Pages/Dashboard/Profile";
 import Saved from "./Pages/Dashboard/Saved";
 import RecipeDetails from "./Pages/Dashboard/RecipeDetails"
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<LandingPage/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />}>

@@ -73,7 +73,7 @@ const RecipeDetail = () => {
     .filter((s) => s.trim().length > 0) || []
 
   return (
-    <div className="max-w-2xl">
+    <div className="">
 
       <div className="flex items-center justify-between mb-6">
         <button

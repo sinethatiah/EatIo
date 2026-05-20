@@ -21,14 +21,14 @@ const Dashboard = () => {
         <div className="flex flex-col gap-1">
          <div className="mb-8 flex items-center gap-2">
   <div className="mb-8">
-  <img 
+ <img 
   src="/src/assets/myLogo.png" 
   alt="eat.io" 
   className="w-16 h-16 rounded-xl mb-8"
   style={{ mixBlendMode: "multiply", backgroundColor: "#5c3318" }}
 />
 </div>
-  
+  <span className="text-xl font-semibold" style={{ color: "#9e6b47" }}>eat.io</span>
 </div>
           <NavLink
             to="home"

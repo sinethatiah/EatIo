@@ -1,11 +1,40 @@
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore"
+import { db } from "../../firebase"
+import { useAuth } from "../../Context/AuthContext"
 import useProfile from "../../Hooks/useProfile"
-import useRecipes from "../../hooks/useRecipes"
+import useRecipes from "../../Hooks/useRecipes"
 
 const Home = () => {
   const { profile, loading: profileLoading } = useProfile()
   const { recipes, loading: recipesLoading } = useRecipes()
+  const { currentUser } = useAuth()
   const navigate = useNavigate()
+  const [savedRecipes, setSavedRecipes] = useState([])
+
+  useEffect(() => {
+    const fetchSaved = async () => {
+      const ref = doc(db, "users", currentUser.uid)
+      const snap = await getDoc(ref)
+      if (snap.exists()) {
+        setSavedRecipes(snap.data().profile.savedRecipes || [])
+      }
+    }
+    fetchSaved()
+  }, [currentUser])
+
+  const handleSave = async (e, recipeId) => {
+    e.stopPropagation()
+    const ref = doc(db, "users", currentUser.uid)
+    if (savedRecipes.includes(recipeId)) {
+      await updateDoc(ref, { "profile.savedRecipes": arrayRemove(recipeId) })
+      setSavedRecipes((prev) => prev.filter((id) => id !== recipeId))
+    } else {
+      await updateDoc(ref, { "profile.savedRecipes": arrayUnion(recipeId) })
+      setSavedRecipes((prev) => [...prev, recipeId])
+    }
+  }
 
   if (profileLoading || recipesLoading) return <p className="text-base text-gray-400">Loading...</p>
 
@@ -33,8 +62,19 @@ const Home = () => {
               alt={recipe.title}
               className="w-full h-32 object-cover rounded-md mb-3"
             />
-            <p className="text-base font-medium">{recipe.title}</p>
-            <p className="text-sm text-gray-400 mt-1">{recipe.readyInMinutes} min · {recipe.servings} servings</p>
+            <p className="text-base font-medium mb-1">{recipe.title}</p>
+            <p className="text-sm text-gray-400 mb-3">{recipe.readyInMinutes} min · {recipe.servings} servings</p>
+
+            <button
+              onClick={(e) => handleSave(e, recipe.id)}
+              className={`text-xs px-3 py-1 rounded-lg border transition-all ${
+                savedRecipes.includes(recipe.id)
+                  ? "bg-black text-white border-black"
+                  : "text-gray-400 border-gray-200 hover:border-gray-400"
+              }`}
+            >
+              {savedRecipes.includes(recipe.id) ? "Saved" : "Save"}
+            </button>
           </div>
         ))}
       </div>

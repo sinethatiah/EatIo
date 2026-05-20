@@ -11,10 +11,10 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <div className="flex flex-col justify-between w-48 border-r border-gray-100 px-6 py-8">
+      <div className="flex flex-col justify-between w-48 h-full border-r border-gray-100 px-6 py-8 shrink-0">
         <div className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold mb-8">eat.io</h1>
           <Link to="home" className="text-base text-gray-400 hover:text-black py-1">Home</Link>
@@ -32,7 +32,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 px-8 py-8">
+      <div className="flex-1 px-8 py-8 overflow-y-auto">
         <Outlet />
       </div>
 

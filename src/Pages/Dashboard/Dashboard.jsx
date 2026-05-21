@@ -1,7 +1,7 @@
 import { auth } from "../../firebase"
 import { signOut } from 'firebase/auth'
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom'
-import useTheme from "../../hooks/useTheme"
+import useTheme from "../../Hooks/UseTheme"
 
 const Dashboard = () => {
   const navigate = useNavigate()

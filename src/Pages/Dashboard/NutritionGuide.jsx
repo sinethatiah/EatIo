@@ -1,6 +1,6 @@
 import useProfile from "../../Hooks/UseProfile"
-import { conditions } from "../../data/conditions"
-import { goals } from "../../data/goals"
+import { conditions } from "../../Data/Conditions"
+import { goals } from "../../Data/Goals"
 
 const NutritionGuide = () => {
   const { profile, loading } = useProfile()

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import useProfile from "./useProfile"
+import useProfile from "./UseProfile"
 
 const useRecipes = () => {
   const { profile, loading: profileLoading } = useProfile()

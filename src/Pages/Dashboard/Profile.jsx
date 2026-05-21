@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { doc, updateDoc } from "firebase/firestore"
 import { db } from "../../firebase"
 import { useAuth } from "../../Context/AuthContext"
-import useProfile from "../../Hooks/useProfile"
+import useProfile from "../../Hooks/UseProfile"
 
 const Profile = () => {
   const { profile, loading } = useProfile()

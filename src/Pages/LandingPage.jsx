@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import useTheme from "../hooks/useTheme"
+import useTheme from "../Hooks/UseTheme"
 
 const LandingPage = () => {
   const navigate = useNavigate()

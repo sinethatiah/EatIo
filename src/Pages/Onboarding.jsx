@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { useAuth } from "../Context/AuthContext"
-import { conditions } from "../data/conditions"
-import { goals } from "../data/goals"
+import { conditions } from "../Data/Conditions"
+import { goals } from "../Data/Goals"
 
 const Onboarding = () => {
   const [step, setStep] = useState(1)

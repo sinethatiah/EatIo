@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore"
 import { db } from "../../firebase"
 import { useAuth } from "../../Context/AuthContext"
-import useProfile from "../../Hooks/useProfile"
-import useRecipes from "../../Hooks/useRecipes"
+import useProfile from "../../Hooks/UseProfile"
+import useRecipes from "../../Hooks/UseRecipes"
 
 const Home = () => {
   const { profile, loading: profileLoading } = useProfile()

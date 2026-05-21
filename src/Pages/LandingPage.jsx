@@ -74,12 +74,12 @@ const LandingPage = () => {
         <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
           Recipes tailored to your health conditions, goals, and dietary restrictions. No guesswork.
         </p>
-        <button
-          onClick={() => navigate("/signup")}
-          className="px-8 py-3 rounded-lg text-primary-foreground bg-brown hover:opacity-90 transition-opacity text-base"
-        >
-          Get started →
-        </button>
+       <button
+  onClick={() => navigate("/explore")}
+  className="px-8 py-3 rounded-lg text-primary-foreground bg-brown hover:opacity-90 transition-opacity text-base"
+>
+  Explore recipes →
+</button>
       </div>
 
       {/* Recipe showcase */}

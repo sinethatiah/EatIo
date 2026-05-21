@@ -83,31 +83,47 @@ const LandingPage = () => {
       </div>
 
       {/* Recipe showcase */}
-      <div className="px-10 pb-16">
-        <h2 className="text-xl font-medium mb-2 text-foreground">Explore recipes</h2>
-        <p className="text-base text-muted-foreground mb-8">A taste of what's inside.</p>
+     {/* Recipe showcase */}
+<div className="px-10 pb-16">
+  <h2 className="text-xl font-medium mb-2 text-foreground">Explore recipes</h2>
+  <p className="text-base text-muted-foreground mb-8">A taste of what's inside.</p>
 
-        {loading ? (
-          <p className="text-base text-muted-foreground">Loading...</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {recipes.map((recipe) => (
-              <div
-                key={recipe.idMeal}
-                className="border border-border rounded-lg p-4 bg-card text-card-foreground"
-              >
-                <img
-                  src={recipe.strMealThumb}
-                  alt={recipe.strMeal}
-                  className="w-full h-32 object-cover rounded-md mb-3"
-                />
-                <p className="text-base font-medium mb-1">{recipe.strMeal}</p>
-                <p className="text-sm text-muted-foreground">{recipe.strCategory} · {recipe.strArea}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+  {loading ? (
+    <p className="text-base text-muted-foreground">Loading...</p>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {recipes.map((recipe) => (
+        <div
+          key={recipe.idMeal}
+          className="border border-border rounded-lg p-4 bg-card text-card-foreground"
+        >
+          <img
+            src={recipe.strMealThumb}
+            alt={recipe.strMeal}
+            className="w-full h-32 object-cover rounded-md mb-3"
+          />
+          <p className="text-base font-medium mb-1">{recipe.strMeal}</p>
+          <p className="text-sm text-muted-foreground mb-3">{recipe.strCategory} · {recipe.strArea}</p>
+          <button
+            onClick={() => navigate(`/recipe/${recipe.idMeal}`)}
+            className="text-xs underline text-green hover:text-brown transition-colors"
+          >
+            View more →
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <div className="text-center mt-8">
+    <button
+      onClick={() => navigate("/explore")}
+      className="text-sm underline text-green hover:text-brown transition-colors"
+    >
+      View all recipes →
+    </button>
+  </div>
+</div>
 
       {/* Personalize section */}
       <div className="mx-10 mb-16 rounded-2xl px-10 py-12 text-center bg-secondary">

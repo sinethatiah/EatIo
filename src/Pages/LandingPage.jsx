@@ -25,7 +25,7 @@ const LandingPage = () => {
      <div className="flex items-center justify-between px-10 py-5 border-b border-border">
   <div className="flex items-center gap-2">
     <img
-      src="/src/assets/myLogo.png"
+      src="/public/myLogo.png"
       alt="eat.io"
       className="w-12 h-12 rounded-xl"
       style={{ backgroundColor: "#5c3318" }}

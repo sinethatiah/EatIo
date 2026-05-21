@@ -24,7 +24,7 @@ const Dashboard = () => {
 
           <div className="mb-8 flex items-center gap-2">
            <img
-      src="/src/assets/myLogo.png"
+      src="/public/myLogo.png"
       alt="eat.io"
       className="w-12 h-12 rounded-xl"
       style={{ backgroundColor: "#5c3318" }}

@@ -12,6 +12,7 @@ import Saved from "./Pages/Dashboard/Saved";
 import RecipeDetails from "./Pages/Dashboard/RecipeDetails"
 import LandingPage from "./Pages/LandingPage";
 import Explore from "./Pages/Explore";
+import PublicRecipeDetails from "./Pages/PublicRecipeDetails";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/explore" element={<Explore/>}/>
+            <Route path="/recipe/:id" element={<PublicRecipeDetails/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />}>

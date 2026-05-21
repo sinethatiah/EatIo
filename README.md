@@ -1,16 +1,39 @@
-# React + Vite
+# Eat.IO
+This is a platform who's aim is to aid those seeking clarification in their health, as relates to their eating habits. It consists of recipe suggestions tailored to ones own preferences, and also restrictions. It can also be used by those seeking to explore so it is a one stop shop for one and all who love food....and don't we all.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ ## Problem Statement
+Time and again we find ourselves wanting to eat well, only to hit a wall. Whether you have a medical condition that limits what you can eat, a health goal you are trying to work towards, or simply no idea what is safe for your body — finding the right recipes is overwhelming. You end up scouring the internet, reading conflicting advice, and still landing on meals that do not work for you.
 
-Currently, two official plugins are available:
+## Solution
+We bring the right recipes to you. Tell us about your condition, your goal, or your dietary restrictions and we do the rest. No more guesswork, no more hours of research. From Crohn's disease to diabetes, from losing weight to building muscle — our platform filters a full recipe collection to match exactly what your body needs, and gives you the nutritional guidance to back it up. All in one place, at the click of a button.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technology used
+1. React
+1. Firebase
+1. Tailwind CSS
+1. Shadcn
 
-## React Compiler
+## Pages present
+1. Landing page
+1. Login page
+1. Sing up page
+1. Dashboard
+1. Home page
+1. Recipe listing page
+1. Recipe Details page
+1. Guide page
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+
+## Contribution to project
+
+Anyone who wants to contribute to the project can clone is welcome to give an issue and clone.
+
+```
+git clone https://github.com/sinethatiah/EatIo
+
+```
+

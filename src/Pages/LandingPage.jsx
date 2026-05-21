@@ -33,30 +33,37 @@ const LandingPage = () => {
     <span className="text-lg font-semibold text-brown">eat.io</span>
   </div>
 
-  <div className="flex items-center gap-4">
-    <button
-      onClick={toggle}
-      className="text-muted-foreground hover:text-brown transition-colors"
-    >
-      <span className="material-symbols-outlined text-xl">
-        {dark ? "light_mode" : "dark_mode"}
-      </span>
-    </button>
+ <div className="flex items-center gap-4">
+  <button
+    onClick={toggle}
+    className="text-muted-foreground hover:text-brown transition-colors"
+  >
+    <span className="material-symbols-outlined text-xl">
+      {dark ? "light_mode" : "dark_mode"}
+    </span>
+  </button>
 
-    <button
-      onClick={() => navigate("/login")}
-      className="text-sm text-muted-foreground hover:text-brown transition-colors"
-    >
-      Log in
-    </button>
+  <button
+    onClick={() => navigate("/explore")}
+    className="text-sm text-muted-foreground hover:text-brown transition-colors"
+  >
+    Explore
+  </button>
 
-    <button
-      onClick={() => navigate("/signup")}
-      className="text-sm px-4 py-2 rounded-lg text-primary-foreground bg-brown hover:opacity-90 transition-opacity"
-    >
-      Sign up
-    </button>
-  </div>
+  <button
+    onClick={() => navigate("/login")}
+    className="text-sm text-muted-foreground hover:text-brown transition-colors"
+  >
+    Log in
+  </button>
+
+  <button
+    onClick={() => navigate("/signup")}
+    className="text-sm px-4 py-2 rounded-lg text-primary-foreground bg-brown hover:opacity-90 transition-opacity"
+  >
+    Sign up
+  </button>
+</div>
 </div>
 
       {/* Hero */}

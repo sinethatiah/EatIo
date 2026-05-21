@@ -36,4 +36,5 @@ Anyone who wants to contribute to the project can clone is welcome to give an is
 git clone https://github.com/sinethatiah/EatIo
 
 ```
-
+## Licensing
+ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.

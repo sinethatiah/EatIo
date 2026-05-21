@@ -39,12 +39,12 @@ const Home = () => {
   }
 
   if (profileLoading || recipesLoading)
-    return <p className="text-base text-gray-400">Loading...</p>
+    return <p className="text-base text-muted-foreground">Loading...</p>
 
   return (
     <div>
-      <h2 className="text-lg font-medium mb-1">Welcome back</h2>
-      <p className="text-base text-gray-400 mb-8">
+      <h2 className="text-lg font-medium mb-1 text-foreground">Welcome back</h2>
+      <p className="text-base text-muted-foreground mb-8">
         {profile.intent === "condition"
           ? `Showing recipes safe for: ${profile.conditions[0]}`
           : profile.intent === "goal"
@@ -56,8 +56,7 @@ const Home = () => {
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="border border-gray-200 rounded-lg p-4"
-            style={{ backgroundColor: "#fdfaf6" }}
+            className="border border-border rounded-lg p-4 bg-card text-card-foreground"
           >
             <img
               src={recipe.image}
@@ -65,27 +64,23 @@ const Home = () => {
               className="w-full h-32 object-cover rounded-md mb-3"
             />
             <p className="text-base font-medium mb-1">{recipe.title}</p>
-            <p className="text-sm text-gray-400 mb-3">{recipe.category} · {recipe.area}</p>
+            <p className="text-sm text-muted-foreground mb-3">{recipe.category} · {recipe.area}</p>
 
             <div className="flex items-center justify-between">
               <button
                 onClick={(e) => handleSave(e, recipe.id)}
-                className="text-xs px-3 py-1 rounded-lg border transition-all"
-                style={
+                className={`text-xs px-3 py-1 rounded-lg border transition-all ${
                   savedRecipes.includes(recipe.id)
-                    ? { backgroundColor: "#9e6b47", color: "white", borderColor: "#9e6b47" }
-                    : { color: "#9e6b47", borderColor: "#9e6b47" }
-                }
+                    ? "bg-brown text-primary-foreground border-brown"
+                    : "text-brown border-brown hover:opacity-80"
+                }`}
               >
                 {savedRecipes.includes(recipe.id) ? "Saved" : "Save"}
               </button>
 
               <button
                 onClick={() => navigate(`/dashboard/recipe/${recipe.id}`)}
-                className="text-xs underline"
-                style={{ color: "#607a52" }}
-                onMouseOver={e => e.target.style.color = "#9e6b47"}
-                onMouseOut={e => e.target.style.color = "#607a52"}
+                className="text-xs underline text-green hover:text-brown transition-colors"
               >
                 View more →
               </button>

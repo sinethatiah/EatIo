@@ -66,32 +66,29 @@ const RecipeDetail = () => {
     }
   }
 
-  if (loading) return <p className="text-base text-gray-400">Loading...</p>
+  if (loading) return <p className="text-base text-muted-foreground">Loading...</p>
 
   const steps = recipe.strInstructions
     ?.split("\n")
     .filter((s) => s.trim().length > 0) || []
 
   return (
-    <div className="">
+    <div>
 
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="text-sm text-gray-400 underline"
-          onMouseOver={e => e.target.style.color = "#9e6b47"}
-          onMouseOut={e => e.target.style.color = ""}
+          className="text-sm text-muted-foreground underline hover:text-brown transition-colors"
         >
           ← Back
         </button>
         <button
           onClick={handleSave}
-          className="text-sm px-4 py-2 rounded-lg border transition-all"
-          style={
+          className={`text-sm px-4 py-2 rounded-lg border transition-all ${
             saved
-              ? { backgroundColor: "#9e6b47", color: "white", borderColor: "#9e6b47" }
-              : { color: "#9e6b47", borderColor: "#9e6b47", backgroundColor: "transparent" }
-          }
+              ? "bg-brown text-primary-foreground border-brown"
+              : "text-brown border-brown hover:opacity-80"
+          }`}
         >
           {saved ? "Saved" : "Save recipe"}
         </button>
@@ -103,27 +100,27 @@ const RecipeDetail = () => {
         className="w-full h-56 object-cover rounded-lg mb-6"
       />
 
-      <h2 className="text-xl font-medium mb-1">{recipe.strMeal}</h2>
-      <p className="text-base text-gray-400 mb-6">
+      <h2 className="text-xl font-medium mb-1 text-foreground">{recipe.strMeal}</h2>
+      <p className="text-base text-muted-foreground mb-6">
         {recipe.strCategory} · {recipe.strArea}
       </p>
 
-      <h3 className="text-base font-medium mb-3">Ingredients</h3>
+      <h3 className="text-base font-medium mb-3 text-foreground">Ingredients</h3>
       <div className="flex flex-col gap-2 mb-8">
         {ingredients.map((ing, index) => (
           <div key={index} className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#607a52" }} />
-            <p className="text-base text-gray-600">{ing}</p>
+            <div className="w-1.5 h-1.5 rounded-full bg-green shrink-0" />
+            <p className="text-base text-muted-foreground">{ing}</p>
           </div>
         ))}
       </div>
 
-      <h3 className="text-base font-medium mb-3">Instructions</h3>
+      <h3 className="text-base font-medium mb-3 text-foreground">Instructions</h3>
       <div className="flex flex-col gap-4">
         {steps.map((step, index) => (
           <div key={index} className="flex gap-3">
-            <span className="text-sm shrink-0 mt-0.5" style={{ color: "#9e6b47" }}>{index + 1}.</span>
-            <p className="text-base text-gray-600">{step}</p>
+            <span className="text-sm text-brown shrink-0 mt-0.5">{index + 1}.</span>
+            <p className="text-base text-muted-foreground">{step}</p>
           </div>
         ))}
       </div>

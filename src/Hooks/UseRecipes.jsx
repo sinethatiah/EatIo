@@ -13,7 +13,7 @@ const useRecipes = () => {
       try {
         setLoading(true)
 
-        // Step 1: fetch a general pool of recipes
+       
         const res = await fetch(
           "https://www.themealdb.com/api/json/v1/1/search.php?s="
         )
@@ -21,7 +21,7 @@ const useRecipes = () => {
 
         const rawRecipes = data.meals || []
 
-        // Step 2: map into your app format
+       
         let formatted = rawRecipes.map((meal) => ({
           id: meal.idMeal,
           title: meal.strMeal,
@@ -34,7 +34,7 @@ const useRecipes = () => {
           ingredients: extractIngredients(meal),
         }))
 
-        // Step 3: apply profile-based filtering
+        
         if (profile?.restrictions?.length) {
           const restrictions = profile.restrictions.map((r) =>
             r.toLowerCase()
@@ -49,7 +49,7 @@ const useRecipes = () => {
               ...recipe.ingredients,
             ].join(" ")
 
-            // if ANY restriction appears → remove recipe
+           
             return !restrictions.some((r) => text.includes(r))
           })
         }
@@ -71,7 +71,7 @@ const useRecipes = () => {
 
 export default useRecipes
 
-// Helper: extract ingredients from TheMealDB structure
+
 const extractIngredients = (meal) => {
   const ingredients = []
 

@@ -99,7 +99,7 @@ Contributions are welcome. If you find a bug or have a feature request, open an 
 1. Fork the repository
 2. Clone your fork locally:
 ```bash
-git clone https://github.com/your-username/EatIo
+git clone https://github.com/sinethatiah/EatIo.git
 ```
 3. Install dependencies:
 ```bash

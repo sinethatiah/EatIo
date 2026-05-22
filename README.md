@@ -40,25 +40,89 @@ We bring the right recipes to you. Tell us about your condition, your goal, or y
 1. Recipe Details page
 1. Guide page
 
+## Environment Setup
 
+To run this project locally you will need to set up Firebase and the TheMealDB API.
+### Firebase Setup
 
+1. Go to [https://console.firebase.google.com](https://console.firebase.google.com) and create a new project
+2. In your project, go to **Authentication → Sign-in method** and enable:
+   - Email/Password
+   - Google
+3. Go to **Firestore Database** and create a database in production mode
+4. Go to **Project Settings → Your apps** and register a web app
+5. Copy the Firebase config and paste it into `src/firebase.js`:
 
+```js
+const firebaseConfig = {
+  apiKey: "your_api_key",
+  authDomain: "your_auth_domain",
+  projectId: "your_project_id",
+  storageBucket: "your_storage_bucket",
+  messagingSenderId: "your_messaging_sender_id",
+  appId: "your_app_id",
+}
+```
+### Firestore Data Structure
 
-
-## Contribution to project
-
-Anyone who wants to contribute to the project can clone is welcome to give an issue and clone.
-1. Fork the repository
-2. Create a new branch for your feature (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a pull request
-
-To clone the repo:
+Each user gets a document in the `users` collection with the following structure:
 
 ```
-git clone https://github.com/sinethatiah/EatIo
+users/{uid}/
+  profile: {
+    intent: "condition" | "goal" | "explore"
+    conditions: ["crohns"]
+    goals: ["lose_weight"]
+    restrictions: ["dairy", "spicy foods"]
+    savedRecipes: [{ id, title, image, category, area }]
+  }
+```
+### TheMealDB API
 
+This project uses [TheMealDB](https://www.themealdb.com/api.php) which is free and requires no API key. The endpoints used are:
+
+- `GET /api/json/v1/1/search.php?s=` — fetch all recipes or search by name
+- `GET /api/json/v1/1/lookup.php?i={id}` — fetch a single recipe by id
+### Running Locally
+
+After setting up Firebase:
+1. npm install
+1. npm run dev
+
+
+
+
+## Contributing
+
+Contributions are welcome. If you find a bug or have a feature request, open an issue on GitHub before starting work so it can be discussed first.
+
+1. Fork the repository
+2. Clone your fork locally:
+```bash
+git clone https://github.com/your-username/EatIo
+```
+3. Install dependencies:
+```bash
+npm install
+```
+4. Set up Firebase as described in the Environment Setup section above
+5. Create a new branch for your feature:
+```bash
+git checkout -b feature/your-feature
+```
+6. Make your changes and commit:
+```bash
+git commit -m "Add your feature"
+```
+7. Push to your branch:
+```bash
+git push origin feature/your-feature
+```
+8. Open a pull request on the original repository
+
+Original repo:
+```bash
+git clone https://github.com/sinethatiah/EatIo
 ```
 ## Licensing
  This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
